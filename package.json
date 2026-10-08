@@ -1,0 +1,68 @@
+{
+  "name": "containment-game",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.15.0 <25"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "npm run build:runtime && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "npm run build:runtime && tsc --noEmit",
+    "lint": "eslint src tests scripts packages/game-runtime/src && node scripts/check-boundaries.mjs && node scripts/verify-vendor.mjs",
+    "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:browser": "vitest run --project browser",
+    "verify:hardware": "vitest run --config vitest.hardware.config.ts --reporter=default --reporter=json --outputFile=artifacts/hardware/report.json",
+    "check": "npm run typecheck && npm run lint && npm test && npm run build",
+    "verify:browser": "node scripts/verify-browser.mjs",
+    "build:runtime": "npm run build --workspace @local-games/runtime",
+    "predev": "npm run build:runtime",
+    "verify:compatibility": "node scripts/verify-compatibility.mjs",
+    "verify:package": "npm run build:runtime && node scripts/verify-package.mjs"
+  },
+  "dependencies": {
+    "@gyral/core": "file:vendor/gyral/0.3.1-next.1/gyral-core-0.3.1-next.1.tgz",
+    "three": "0.186.1",
+    "@local-games/runtime": "0.0.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@gyral/testing": "file:vendor/gyral/0.3.1-next.1/gyral-testing-0.3.1-next.1.tgz",
+    "@types/node": "24.10.1",
+    "@types/three": "0.186.0",
+    "@typescript-eslint/parser": "8.71.0",
+    "@vitest/browser-playwright": "4.1.11",
+    "eslint": "10.12.0",
+    "parse5": "8.0.1",
+    "playwright": "1.63.0",
+    "typescript": "5.9.3",
+    "vite": "8.3.3",
+    "vitest": "4.1.11"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "description": "A 3D territory-capture browser game inspired by JezzBall, built with TypeScript, Gyral, and Three.js.",
+  "license": "MIT",
+  "author": "Mike Zupper",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikezupper/containment.git"
+  },
+  "homepage": "https://github.com/mikezupper/containment#readme",
+  "bugs": {
+    "url": "https://github.com/mikezupper/containment/issues"
+  },
+  "keywords": [
+    "browser-game",
+    "territory-capture",
+    "puzzle-game",
+    "threejs",
+    "webgl",
+    "typescript",
+    "gyral"
+  ]
+}

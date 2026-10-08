@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#14272c">
+    <title>Containment — Play the 3D territory game</title>
+    <meta name="description" content="Play Containment, a 3D territory game. Build walls around bouncing balls and claim 75% of the chamber. Free browser play with mouse, touch, or keyboard.">
+    <meta property="og:title" content="Containment — A little space. A little strategy.">
+    <meta property="og:description" content="Build walls around bouncing balls. Claim 75% of the chamber. Play Containment with mouse, touch, or keyboard.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml">
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to game</a>
+    <header class="site-header">
+      <a href="%BASE_URL%" class="wordmark" aria-label="Containment home"><svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="currentColor"/><path d="M16 6v20M6 16h20" stroke="var(--page)" stroke-width="2"/><circle cx="22" cy="10" r="4" fill="var(--coral)"/></svg> Small games. Big focus.</a>
+      <nav aria-label="Page"><a href="#how-to-play">How to play <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="main">
+      <section class="intro" aria-labelledby="title">
+        <div><p class="eyebrow">A classic, in a new dimension</p><h1 id="title" translate="no">Containment<span aria-hidden="true">.</span></h1></div>
+        <p class="intro-copy">Make a wall.<br>Find your opening.<br><strong>Take back the chamber.</strong></p>
+      </section>
+      <section class="game-layout" aria-label="Play Containment">
+        <aside class="console" aria-label="Game controls">
+          <div class="console-heading"><h2>Your next move</h2><span aria-hidden="true">↗</span></div>
+          <div id="controls"><p>Game controls load with JavaScript.</p></div>
+        </aside>
+        <div class="chamber-panel">
+          <div class="chamber-caption"><span><span class="status-dot" aria-hidden="true"></span> The chamber</span><span>28 × 20</span></div>
+          <div class="board-wrap"><div id="board"><p class="loading">Preparing your chamber…</p></div><p id="board-state" class="board-state">A little space. A little strategy.</p></div>
+          <p id="board-help" class="board-help"><span>Click or tap to build.</span><span>Right-click or <kbd>R</kbd> to rotate.</span></p>
+          <output id="keyboard-position" class="visually-hidden" aria-live="polite">Keyboard: arrows to aim, Enter to build, R to rotate, P to pause.</output>
+        </div>
+      </section>
+      <noscript><p class="no-script">Playing needs JavaScript and WebGL 2. You can still read the rules below.</p></noscript>
+      <section id="how-to-play" class="rules" aria-labelledby="rules-heading">
+        <div class="rules-heading"><p class="eyebrow">Simple rules. Tricky timing.</p><h2 id="rules-heading">A game of making space.</h2><p>Inspired by the 1992 Windows game. The balls keep moving. You choose where to draw the line.</p></div>
+        <ol class="rule-cards">
+          <li><span class="rule-number" aria-hidden="true">01 /</span><h3>Split the chamber</h3><p>Choose a vertical or horizontal wall. Click or tap an open square. Two wall ends grow in opposite directions.</p></li>
+          <li><span class="rule-number" aria-hidden="true">02 /</span><h3>Keep the ends clear</h3><p>A ball hitting a growing end costs a life and breaks that half. A half that reaches a boundary stays solid.</p></li>
+          <li><span class="rule-number" aria-hidden="true">03 /</span><h3>Claim 75%</h3><p>Enclosed spaces with no balls fill in. Clear at least 75% of the original board before time or lives run out. The next level adds a ball.</p></li>
+        </ol>
+        <details class="controls-guide"><summary>Controls, scoring, and a useful first move</summary>
+          <div class="guide-content">
+            <section aria-labelledby="controls-heading"><h3 id="controls-heading">Pick your controls</h3>
+              <dl><div><dt>Mouse</dt><dd>Click to build. Right-click to rotate.</dd></div><div><dt>Touch</dt><dd>Tap to build. Use the wall button to rotate. Drag to scroll without building.</dd></div><div><dt>Keyboard</dt><dd>Tab to the chamber. Use arrows to aim, Shift + arrows to move four squares, Enter or Space to build, R to rotate, and P or Escape to pause.</dd></div></dl>
+            </section>
+            <section aria-labelledby="scoring-heading"><h3 id="scoring-heading">Give yourself an opening</h3><p>Start with a long cut when the balls are far away. Once one side is safe, work inward. Only one pair of wall ends can grow at a time.</p><p>Each cleared square earns 10 points × level. Finish a chamber for a time bonus; capturing more than 80% or 90% earns an extra bonus. Choose Slow pace before starting or while paused. Switching tabs pauses the game.</p><p>This version starts with a 2:30 clock and adds 30 seconds per level. Timing and scoring are modern tuning choices, rather than an exact recreation of the Windows executable.</p></section>
+          </div>
+        </details>
+      </section>
+    </main>
+    <footer class="site-footer"><p>A small tribute to a very good idea.</p><p>Based on <a href="https://archive.org/details/win3_JezzBall">the original JezzBall</a> by Dima Pavlovsky. Unofficial remake. <a href="%BASE_URL%third-party-notices.txt">Licenses</a>.</p></footer>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+name: Feature proposal
+description: Propose an improvement for players or contributors.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe who encounters the problem and when it occurs.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain the change and how someone would use it.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and tradeoffs
+      description: Include effects on controls, accessibility, performance, or architecture where relevant.

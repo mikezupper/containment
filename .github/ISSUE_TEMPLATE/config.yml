@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and discussion
+    url: https://github.com/mikezupper/containment/discussions
+    about: Ask about the game, setup, or design before proposing an implementation.
+  - name: Report a vulnerability privately
+    url: https://github.com/mikezupper/containment/security/advisories/new
+    about: Keep undisclosed security issues out of the public issue tracker.

@@ -1,0 +1,2 @@
+# Preserve upstream license formatting and intentional Markdown hard breaks.
+.agents/skills/** whitespace=-blank-at-eol,-blank-at-eof

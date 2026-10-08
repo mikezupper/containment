@@ -1,5 +1,13 @@
-
-# Beads / Dolt files (added by bd init)
+node_modules/
+dist/
+packages/*/dist/
+artifacts/
+coverage/
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
 .dolt/
 *.db
 .beads-credential-key

@@ -1,0 +1,30 @@
+name: Bug report
+description: Report a reproducible problem with gameplay, controls, graphics, or documentation.
+labels: [bug]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Explain the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include a small repeatable sequence and the affected commit or URL.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Browser and device
+      description: Include browser/OS versions, viewport or device size, orientation, and whether this is emulation or a physical device.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots and console output
+      description: Remove private information. Report security vulnerabilities privately through the security policy.
