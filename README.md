@@ -116,6 +116,7 @@ Pushes to `main` queue checks. A maintainer reviews a public PR's exact commit a
 starts its check run manually. Jobs wait while the runner is offline. Start it in the
 foreground, let the queue drain, then stop it; no systemd service is used. See
 [runner setup and operation](docs/self-hosted-ci.md).
+Dependency caches stay on the local host.
 
 Reports and screenshots are uploaded as workflow artifacts; local copies go in the
 ignored `artifacts/` directory. Browser emulation does not establish physical-phone

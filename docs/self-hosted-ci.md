@@ -23,6 +23,11 @@ using `npx playwright install-deps chromium firefox webkit` from a project check
 with npm dependencies installed. This may need elevated installation privileges.
 Workflow jobs install browser binaries without `sudo`.
 
+npm downloads and browser binaries reuse the host's local caches. Both workflows
+disable setup-node's remote package-manager cache; they do not archive or upload
+the machine's shared npm cache to GitHub. Browser verification reports and screenshots
+are still uploaded as workflow artifacts.
+
 ## Start, drain, stop
 
 In the runner directory:
