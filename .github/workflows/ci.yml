@@ -23,6 +23,9 @@ jobs:
     name: Checks
     runs-on: xode-linux-x64
     timeout-minutes: 30
+    env:
+      # Xode workers have no host GPU; Firefox and WebKit use Mesa's software renderer.
+      LIBGL_ALWAYS_SOFTWARE: '1'
     steps:
       - name: Validate requested revision
         env:
@@ -43,7 +46,7 @@ jobs:
       - name: Prepare the fresh worker
         run: |
           sudo apt-get update -qq
-          sudo apt-get install --no-install-recommends -y build-essential python3 xz-utils unzip
+          sudo apt-get install --no-install-recommends -y build-essential python3 xz-utils unzip libgl1-mesa-dri libglx-mesa0 libegl1 libegl-mesa0
           sudo mkdir -p "$RUNNER_TOOL_CACHE"
           sudo chown "$(id -u):$(id -g)" "$RUNNER_TOOL_CACHE"
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
