@@ -12,6 +12,7 @@ Each region provides two slots. Every job gets its own bounded workspace and Doc
 the fleet removes its workspace, images and build caches after the runner process exits. The
 workflows install Node from `.nvmrc`; CI also installs all three Playwright browsers and their
 system dependencies, including Mesa software OpenGL for GPU-free Firefox and WebKit checks.
+Compatibility checks run under Xvfb so Firefox and WebKit can initialize software OpenGL.
 Nothing depends on workstation toolchains or shared dependency caches.
 
 Pushes to `main` and maintainer manual dispatches run CI. Failure reports and screenshots are
