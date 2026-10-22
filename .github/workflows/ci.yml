@@ -21,8 +21,11 @@ concurrency:
 jobs:
   checks:
     name: Checks
-    runs-on: [self-hosted, linux, x64, containment]
+    runs-on: xode-linux-x64
     timeout-minutes: 30
+    env:
+      # Xode workers have no host GPU; Firefox and WebKit use Mesa's software renderer.
+      LIBGL_ALWAYS_SOFTWARE: '1'
     steps:
       - name: Validate requested revision
         env:
@@ -40,21 +43,30 @@ jobs:
         run: |
           revision=$(git rev-parse HEAD)
           echo "Tested commit: $revision" >> "$GITHUB_STEP_SUMMARY"
+      - name: Prepare the fresh worker
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install --no-install-recommends -y build-essential python3 xz-utils unzip libgl1-mesa-dri libglx-mesa0 libegl1 libegl-mesa0 xvfb xauth mesa-utils
+          sudo mkdir -p "$RUNNER_TOOL_CACHE"
+          sudo chown "$(id -u):$(id -g)" "$RUNNER_TOOL_CACHE"
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
           package-manager-cache: false
       - run: npm ci
       - name: Install browser binaries
-        run: npx playwright install chromium firefox webkit
+        run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run check
       - run: npm run verify:browser
-      - run: npm run verify:compatibility
+      - name: Verify browser compatibility on a virtual display
+        run: |
+          xvfb-run -a glxinfo -B
+          DEBUG=pw:browser xvfb-run -a npm run verify:compatibility
       - name: Keep browser evidence
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: browser-evidence-${{ github.run_id }}-${{ github.run_attempt }}
           path: artifacts/
           if-no-files-found: ignore
-          retention-days: 7
+          retention-days: 1

@@ -59,7 +59,7 @@ subsequently authorized committing and publishing the project to
 
 GitHub issues and PRs provide public contribution intake; maintainers use Beads for
 implementation tracking and link public requests. Human contributors do not need the
-local database. CI uses manually operated self-hosted runners; see [the runner guide](self-hosted-ci.md).
+local database. CI uses disposable Xode workers; see [the runner guide](self-hosted-ci.md).
 Static hosting is described in [deployment](deployment.md).
 
 No Dolt remote or backup destination is configured. The database is available on this

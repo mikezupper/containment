@@ -111,14 +111,13 @@ and may require elevated installation privileges.
 | `npm run build` | Compile the runtime workspace and create `dist/` |
 | `npm run preview` | Preview `dist/` locally |
 
-CI runs on a **manually started self-hosted runner**, never a GitHub-hosted runner.
-Pushes to `main` queue checks. A maintainer reviews a public PR's exact commit and
-starts its check run manually. Jobs wait while the runner is offline. Start it in the
-foreground, let the queue drain, then stop it; no systemd service is used. See
-[runner setup and operation](docs/self-hosted-ci.md).
-Dependency caches stay on the local host.
+CI runs on **disposable Xode workers**, with no GitHub-hosted fallback. Pushes to `main`
+queue checks. A maintainer reviews a public PR's exact commit and starts its check run manually.
+Workers install tools and browsers afresh; the fleet removes their workspaces and caches after
+exit. No runner runs on the development machine. See
+[runner operation and trust policy](docs/self-hosted-ci.md).
 
-Reports and screenshots are uploaded as workflow artifacts; local copies go in the
+Failure reports and screenshots are retained as workflow artifacts for one day; local copies go in the
 ignored `artifacts/` directory. Browser emulation does not establish physical-phone
 or shipping Safari behavior. [The quality guide](docs/quality/README.md) records limits.
 
@@ -165,8 +164,8 @@ license notices. There is no server process, database, or API to deploy; `vite p
 is a local verification tool, not a production server.
 
 For a GitHub Pages project site, build with `npm run build -- --base=/containment/`.
-The included [Pages workflow](.github/workflows/pages.yml) runs manually on the local
-runner after a maintainer enables Pages with GitHub Actions as its source. Creating
+The included [Pages workflow](.github/workflows/pages.yml) runs manually on a Xode
+worker after a maintainer enables Pages with GitHub Actions as its source. Creating
 this repository does not activate a game deployment. See [deployment instructions](docs/deployment.md)
 for base-path checks, hosting settings, and updates.
 
