@@ -14,8 +14,8 @@ Claim it with `bd update <id> --claim`. Close only completed work with a reason.
 The initial playable build is tracked in `jezz-6gx`.
 
 GitHub issues and pull requests are public intake, linked to accepted Beads work by
-maintainers. Human contributors do not need Beads. CI uses manually started self-hosted
-runners only; read [the runner policy](docs/self-hosted-ci.md) before changing triggers
+maintainers. Human contributors do not need Beads. CI uses disposable Xode
+workers only; read [the runner policy](docs/self-hosted-ci.md) before changing triggers
 or runner labels. Keep machine-specific environment files out of Git.
 
 Do not commit or push without an explicit user request. Beads has `no-git-ops: true`.
