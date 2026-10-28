@@ -24,13 +24,13 @@
     "verify:package": "npm run build:runtime && node scripts/verify-package.mjs"
   },
   "dependencies": {
-    "@gyral/core": "file:vendor/gyral/0.3.1-next.1/gyral-core-0.3.1-next.1.tgz",
+    "@gyral/core": "0.3.7",
     "three": "0.186.1",
     "@local-games/runtime": "0.0.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
-    "@gyral/testing": "file:vendor/gyral/0.3.1-next.1/gyral-testing-0.3.1-next.1.tgz",
+    "@gyral/testing": "0.3.7",
     "@types/node": "24.10.1",
     "@types/three": "0.186.0",
     "@typescript-eslint/parser": "8.71.0",

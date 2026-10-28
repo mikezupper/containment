@@ -102,7 +102,7 @@ The workspace [packages/game-runtime](../../packages/game-runtime/README.md) use
 | `observeSelection` | HUD selection through the bridge | Match-stage observation in the packed consumer | Suitable after a coherent snapshot source exists |
 | `createSessionBridge` | Production controls watch/action drivers | Packed consumer starts an actual local match | Existing table driver also coordinates several cells; retain that orchestration |
 
-The `core` entry point has no runtime dependencies. The `gyral` entry point requires the exact optional peer `@gyral/core@0.3.1-next.1`, matching the current vendored artifacts. The packed check first loads the core with no Gyral installed, then installs the peer for the bridge proof. This validates package files, declarations, peer separation, real dispatch, and driver isolation. It does not validate Greed's dice worker or multiplayer, and it is not production adoption in Greed.
+The `core` entry point has no runtime dependencies. The `gyral` entry point requires the exact optional peer `@gyral/core@0.3.7`, matching Containment's npm pin. The packed check first loads the core with no Gyral installed, then installs the peer for the bridge proof. This validates package files, declarations, peer separation, real dispatch, and driver isolation. It does not validate Greed's dice worker or multiplayer, and it is not production adoption in Greed.
 
 `createSessionBridge({ name, select, equal? })` supplies namespaced watch/action drivers, Gyral command factories, and `provide(element, session)`. Components own watch subscriptions; the browser host owns the provider binding and session shutdown. Containment keeps its 120 Hz clock, input, storage, audio, and WebGL recovery outside this package.
 
@@ -131,7 +131,7 @@ The initial package should not take ownership of:
 - A mandatory server, database, lobby, or multiplayer protocol.
 - Every game's visual theme and asset pipeline.
 
-The current Gyral consumers use repository-local tarball dependencies. A distributable package needs a deliberate dependency strategy rather than inheriting paths into either game's vendor directory. Preserve those existing release artifacts during extraction.
+Containment now installs Gyral as an exact npm release instead of a repository-local tarball. A distributable package still needs a deliberate dependency strategy rather than inheriting either game's pins. Preserve the earlier vendored release artifacts during extraction.
 
 ## The companion starter template
 

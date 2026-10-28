@@ -23,7 +23,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@gyral/core": "0.3.1-next.1"
+    "@gyral/core": "0.3.7"
   },
   "peerDependenciesMeta": {
     "@gyral/core": {
