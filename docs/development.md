@@ -1,7 +1,7 @@
 # Development
 
 Use Node 24.15 or a later Node 24 release and npm. `npm ci` restores the exact lockfile.
-Gyral is installed from local tarballs; the other dependencies come from npm. A network
+All dependencies, including Gyral, come from npm. A network
 connection is needed for uncached installation. The running game makes no API requests.
 
 | Command | Result |
@@ -41,7 +41,7 @@ The private runtime workspace builds before dev, typechecking, and the productio
 build. If changing its source during an active dev session, run `npm run build:runtime`
 to refresh its compiled exports. The package verification uses port 4175, temporary
 files, and the sibling `../greed-dice-game` checkout; set `GREED_REPO` for another path.
-It installs that game's pinned Zod and the vendored Gyral peer into the temporary
+It installs that game's pinned Zod and Containment's pinned Gyral core into the temporary
 consumer, leaving both sibling source and dependencies untouched.
 
 ## Tracking and handoff
@@ -74,8 +74,8 @@ paths and versions are recorded in `.agents/SOURCES.md`. The Semantic HTML entry
 renamed from upstream `skills.md` to `SKILL.md` so agents can discover it consistently.
 Its CSS/JavaScript restriction is explicitly superseded by this project's user request.
 
-To change Gyral, obtain a new reproducible set of artifacts from its source checkout,
-record the source commit and packaging date, and update the lockfile and tests together.
-Do not replace an artifact in place while retaining an old checksum. The existing
-`SOURCE.json` describes the original packaging run; only core and testing are vendored
-here, exactly as in Greed.
+To change Gyral, move `@gyral/core`, `@gyral/testing` and the runtime workspace's peer to
+the same exact npm release, then update the lockfile and tests together. Gyral releases
+are published with npm provenance. The `vendor/gyral/0.3.1-next.1` archives record the
+earlier prerelease: do not replace an artifact in place while retaining an old checksum.
+Their `SOURCE.json` describes that packaging run.

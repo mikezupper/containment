@@ -4,9 +4,10 @@ import { createSessionBridge } from '@local-games/runtime/gyral';
 
 const bridge = createSessionBridge<number, number, number>({ name: 'bridge-test', select: value => value });
 type Msg = { readonly _tag: 'Value'; readonly value: number } | { readonly _tag: 'Add' } | { readonly _tag: 'Failed'; readonly message: string };
-const Control = define<{ readonly value: number; readonly error: string }, Msg>('bridge-test-control', {
+const Control = define<{ readonly value: number; readonly error: string }, Msg>()('bridge-test-control', {
   shadow: false,
-  init: () => [{ value: -1, error: '' }, [bridge.watch(value => ({ _tag: 'Value', value }))]],
+  init: () => ({ value: -1, error: '' }),
+  subscriptions: () => [bridge.watch(value => ({ _tag: 'Value', value }))],
   intent: { Add: () => ({ _tag: 'Add' }) },
   update: {
     Value: (state, msg) => ({ ...state, value: msg.value }),
@@ -39,6 +40,9 @@ it('isolates provided sessions and unsubscribes when a component disconnects', a
   expect(second.host.querySelector('output')!.textContent).toBe('10');
   expect(first.listeners.size).toBe(1); first.element.remove(); await settled(); expect(first.listeners.size).toBe(0);
   expect(second.listeners.size).toBe(1);
+  // Subscriptions start again when a removed host is attached again.
+  first.host.append(first.element); await settled();
+  expect(first.listeners.size).toBe(1); expect(first.host.querySelector('output')!.textContent).toBe('3');
 });
 it('maps rejected asynchronous game actions to a Gyral failure message', async () => {
   const { host } = mount(0, true); await settled(); host.querySelector('button')!.click(); await settled();

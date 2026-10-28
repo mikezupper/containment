@@ -3,7 +3,7 @@ import { playwright } from '@vitest/browser-playwright';
 import { gyralVitePreset } from '@gyral/core/vite';
 
 export default defineConfig({
-  ...gyralVitePreset({ clientOnly: true, optimize: ['@gyral/core'] }),
+  ...gyralVitePreset({ clientOnly: true }),
   test: {
     include: ['tests/hardware/**/*.test.ts'],
     browser: {

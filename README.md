@@ -83,7 +83,8 @@ snapshots and never decides game outcomes. Every subscription, event listener, t
 and graphics resource has an owner and cleanup path. These boundaries are checked by
 repository tooling. [ARCHITECTURE.md](ARCHITECTURE.md) explains the data flow.
 
-Gyral `0.3.1-next.1` is vendored with source provenance and checksums. The private
+Gyral core/testing are the exact npm `0.3.7` releases, with registry integrity in the
+lockfile. The earlier prerelease archives and checksums remain as provenance. The private
 `@local-games/runtime` workspace is MIT-licensed and built automatically before dev,
 typechecking, and production builds. `private: true` prevents accidental npm publication;
 it does not restrict contributions or source reuse. No npm package is published.

@@ -64,8 +64,9 @@ Nothing is published to npm. See the [package assessment](docs/references/game-a
 
 ## External dependencies
 
-Gyral core/testing are local tarballs at `vendor/gyral/0.3.1-next.1`. Their provenance is
-unchanged from Greed; checksums run during lint. Three.js is lazy-loaded with the chamber.
+Gyral core/testing install from npm at exact 0.3.7, sharing one copy of core. The earlier
+`vendor/gyral/0.3.1-next.1` archives remain as historical provenance, and lint still checks
+their hashes. Three.js is lazy-loaded with the chamber.
 The renderer has a 150 KiB gzip budget, checked against production output. The HTML,
 rules, and controls do not require a Three.js bundle to be indexable or understandable.
 

@@ -31,7 +31,8 @@ try {
   report.checks.push(core.stdout.trim());
 
   const greedPackage = JSON.parse(await readFile(path.join(greed, 'package.json'), 'utf8'));
-  await run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', path.join(root, 'vendor/gyral/0.3.1-next.1/gyral-core-0.3.1-next.1.tgz'), `zod@${greedPackage.dependencies.zod}`], { cwd: consumer });
+  const gyralCore = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8')).dependencies['@gyral/core'];
+  await run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', `@gyral/core@${gyralCore}`, `zod@${greedPackage.dependencies.zod}`], { cwd: consumer });
   // These copies are test fixtures from the real checkout, not recreated session mocks.
   await cp(path.join(greed, 'src'), path.join(consumer, 'games/greed'), { recursive: true });
   for (const layer of ['game', 'runtime']) await cp(path.join(root, 'src', layer), path.join(consumer, 'games/jezz', layer), { recursive: true });
@@ -52,15 +53,15 @@ const greed = localSession(['Ada', 'Lin']), jezz = new Session(7);
 const greedBridge = createSessionBridge<GreedSnapshot, Move, string>({ name: 'greed-proof', select: s => s.table.match.stage });
 const jezzBridge = createSessionBridge<Snapshot, Action, string>({ name: 'jezz-proof', select: s => s.game.phase });
 type Msg = { readonly _tag: 'Changed'; readonly value: string } | { readonly _tag: 'Start' } | { readonly _tag: 'Failed'; readonly message: string };
-const GreedControl = define<string, Msg>('greed-package-proof', {
-  shadow: false, init: () => ['', [greedBridge.watch(value => ({ _tag: 'Changed', value }))]],
+const GreedControl = define<string, Msg>()('greed-package-proof', {
+  shadow: false, init: () => '', subscriptions: () => [greedBridge.watch(value => ({ _tag: 'Changed', value }))],
   intent: { Start: () => ({ _tag: 'Start' }) },
   update: { Changed: (_, msg) => msg.value, Failed: (_, msg) => msg.message,
     Start: state => [state, [greedBridge.act({ type: 'Start' }, message => ({ _tag: 'Failed', message }))]] },
   view: (state, i) => html\`<button data-intent=\${i.Start}>Start Greed</button><output>\${state}</output>\`,
 });
-const JezzControl = define<string, Msg>('jezz-package-proof', {
-  shadow: false, init: () => ['', [jezzBridge.watch(value => ({ _tag: 'Changed', value }))]],
+const JezzControl = define<string, Msg>()('jezz-package-proof', {
+  shadow: false, init: () => '', subscriptions: () => [jezzBridge.watch(value => ({ _tag: 'Changed', value }))],
   intent: { Start: () => ({ _tag: 'Start' }) },
   update: { Changed: (_, msg) => msg.value, Failed: (_, msg) => msg.message,
     Start: state => [state, [jezzBridge.act({ type: 'restart' }, message => ({ _tag: 'Failed', message }))]] },

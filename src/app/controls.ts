@@ -10,9 +10,10 @@ type Msg = { readonly _tag: 'Changed'; readonly hud: Hud } | { readonly _tag: 'S
 const perform = (s: State, action: Action) => [s, [act(action, (message): Msg => ({ _tag: 'Failed', message }))]] as const;
 const initial = hud({ game: newGame(), axis: 'vertical', sound: false, best: 0, blocked: null });
 const clock = (seconds: number): string => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
-export const Controls = define<State, Msg>('jezz-controls', {
+export const Controls = define<State, Msg>()('jezz-controls', {
   shadow: false,
-  init: () => [{ hud: initial, error: '' }, [watchHud((hud): Msg => ({ _tag: 'Changed', hud }))]],
+  init: () => ({ hud: initial, error: '' }),
+  subscriptions: () => [watchHud((hud): Msg => ({ _tag: 'Changed', hud }))],
   intent: {
     Start: () => ({ _tag: 'Start' }), Pause: () => ({ _tag: 'Pause' }), Next: () => ({ _tag: 'Next' }),
     Rotate: () => ({ _tag: 'Rotate' }), Sound: () => ({ _tag: 'Sound' }), Speed: () => ({ _tag: 'Speed' }),

@@ -3,6 +3,7 @@ dist/
 packages/*/dist/
 artifacts/
 coverage/
+.gyral/
 *.local
 .env
 .env.*
