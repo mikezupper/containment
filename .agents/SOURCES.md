@@ -9,8 +9,10 @@ Copied on 8 October 2026 from the owner’s local repositories. Reference folder
 | [modern-css](skills/modern-css/SKILL.md) | <https://github.com/mikezupper/modern-css-skill> | `52a9eb3e54800db65bed7e94fc20ddbf28774a49` | `0b7c9b0694c40b658f79e91d275c87e667cc721fb73071221df82fdf01b931e8` |
 | [semantic-html](skills/semantic-html/SKILL.md) | <https://github.com/mikezupper/semantic-html-skill> | `2f804ed7fc46f10aebbf129ce3e3b25200608b80` | `53e76b3eba937456ba4328bd953a9e924f2261eda6a09e5666cdf6b1ab6289f6` |
 | [sense-of-style](skills/sense-of-style/SKILL.md) | <https://github.com/mikezupper/the-sense-of-style-writing-skill> | `e93499a48ef1d5759a3d571a661ea8f25a886615` | `c0537c5702b579b3e1098a977fa26b00a728f1d70be2ff4abb0e6178d25d9539` |
-| [gyral](skills/gyral/SKILL.md) | <https://github.com/gyraljs/gyral/tree/main/skills/gyral> | `a079268c7b48dc9bf6407d07cd9bcddcbea3fd98` | `c100240e83490653219f3937ead76001bea34d2f23885127a86dd3c2e12e0b3c` |
+| [gyral](skills/gyral/SKILL.md) | npm `@gyral/mcp@0.3.8` (`npx @gyral/mcp@0.3.8 skill`), built from <https://github.com/gyraljs/gyral/tree/v0.3.8/skills/gyral> | `3dc51ec339c4c13f60c4cd34a137c4fccb697ca9` (`v0.3.8`) | `ca5885db68e17f1ff129daa05cb6176b0e4fcb4e971f01de2251fb5d2e00e6a3` |
 
 Semantic HTML is distributed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Its upstream `skills.md` is copied verbatim as `SKILL.md`; attribution and original README are preserved in its directory. The owner’s explicit CSS and interactive-game request supersedes its static-page restriction.
 
 Gyral runtime artifacts are copied unchanged from Greed. Their separate package-source provenance and checksums are in [vendor/gyral/0.3.1-next.1](../vendor/gyral/0.3.1-next.1/SOURCE.json). A skill-source commit and a package-source commit identify different artifacts.
+
+The Gyral skill was refreshed on 29 October 2026 with `npx @gyral/mcp@0.3.8 skill --dir .agents/skills/gyral`, which writes the skill bundled in the package. Its files match the `v0.3.8` tag. The npm tarball (`gyral-mcp-0.3.8.tgz`) SHA-256 is `84e5b319ed77a61b1ffb1d3e235663cb98a5483223cdac3baf8b4c878c154de3`. The command removes files the skill doesn't ship, so restore `LICENSE` and `NOTICE` afterwards; they match the package's own.

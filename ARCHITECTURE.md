@@ -39,7 +39,9 @@ Gyral receives a compact HUD through a provided subscription driver. The driver 
 only when the visible fields change. Buttons return action commands. Reducers and
 views never touch the session, the DOM, storage, or randomness directly.
 The observation and Gyral bridge come from the private `packages/game-runtime`
-workspace; HUD projection and equality remain Containment code.
+workspace; HUD projection and equality remain Containment code. Gyral skips a render only
+when a component's state is the same object, and each HUD message carries a new one, so this
+equality is what keeps the controls from rendering on every frame.
 
 `ChamberElement` owns pointer and keyboard listeners, a renderer, and its session
 subscription. Removing it synchronously releases those resources. `ChamberRenderer`
@@ -64,7 +66,7 @@ Nothing is published to npm. See the [package assessment](docs/references/game-a
 
 ## External dependencies
 
-Gyral core/testing install from npm at exact 0.3.7, sharing one copy of core. The earlier
+Gyral core/testing install from npm at exact 0.3.8, sharing one copy of core. The earlier
 `vendor/gyral/0.3.1-next.1` archives remain as historical provenance, and lint still checks
 their hashes. Three.js is lazy-loaded with the chamber.
 The renderer has a 150 KiB gzip budget, checked against production output. The HTML,
