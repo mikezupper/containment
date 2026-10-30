@@ -14,6 +14,8 @@ export function hud(snapshot: Snapshot): Hud {
     percent: Math.floor(game.captured / (WIDTH * HEIGHT) * 100), axis: snapshot.axis, slow: game.slow,
     sound: snapshot.sound, best: snapshot.best, notice: game.notice, blocked: snapshot.blocked };
 }
+// The session emits every frame and hud() builds a new object each time. Gyral skips a render
+// only when state is the same object, so compare values here: 21 HUD messages in 20 s of play, not 1,202.
 const bridge = createSessionBridge<Snapshot, Action, Hud>({ name: 'jezz', select: hud,
   equal: (a, b) => a.phase === b.phase && a.level === b.level && a.score === b.score && a.lives === b.lives
     && a.seconds === b.seconds && a.percent === b.percent && a.axis === b.axis && a.slow === b.slow

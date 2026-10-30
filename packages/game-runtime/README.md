@@ -23,7 +23,8 @@ its existing coalescing adapter before adopting this contract.
 
 `@local-games/runtime/gyral` exports `createSessionBridge({ name, select, equal? })`.
 It returns `watch(toMessage)`, `act(input, onFailure)`, the action driver for model tests,
-and `provide(element, session)`. Each bridge has namespaced watch/action drivers.
+and `provide(element, session)`. Each bridge declares namespaced watch/action driver tokens,
+and `provide` supplies their implementations for one session as a driver list.
 The provider's cleanup removes the binding; component disconnection cancels the watch.
 The host continues to own session shutdown.
 
@@ -36,8 +37,8 @@ const stopProviding = bridge.provide(root, session);
 ```
 
 Install the matching Gyral peer to use the Gyral entry point. Core-only consumers need
-no peer. The exact prerelease peer matches the vendored artifacts currently used by
-these games. A public release needs a stable framework dependency strategy first.
+no peer. The exact peer, `@gyral/core@0.3.8`, matches the release Containment installs.
+A public release needs a stable framework dependency strategy first.
 
 ## Build and verify
 

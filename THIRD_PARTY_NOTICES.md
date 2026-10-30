@@ -7,7 +7,7 @@ Installed npm dependencies retain their licenses in `node_modules` and the lockf
 
 | Material | License and attribution |
 | --- | --- |
-| Gyral core/testing | MIT, © 2026 Mike Zupper; the npm 0.3.7 packages include their license and Cycle.js attribution (`NOTICE`). Historical 0.3.1-next.1 archives: [license](vendor/gyral/0.3.1-next.1/LICENSE), [Cycle.js attribution](vendor/gyral/0.3.1-next.1/NOTICE), [provenance](vendor/gyral/0.3.1-next.1/SOURCE.json) |
+| Gyral core/testing | MIT, © 2026 Mike Zupper; the npm 0.3.8 packages include their license and Cycle.js attribution (`NOTICE`). Historical 0.3.1-next.1 archives: [license](vendor/gyral/0.3.1-next.1/LICENSE), [Cycle.js attribution](vendor/gyral/0.3.1-next.1/NOTICE), [provenance](vendor/gyral/0.3.1-next.1/SOURCE.json) |
 | Three.js | MIT, © 2010–2026 three.js authors; full text included in [runtime notices](public/third-party-notices.txt) |
 | Beads skill | MIT, © 2026 Mike Zupper; [license](.agents/skills/beads/LICENSE), [upstream attribution](.agents/skills/beads/NOTICE.md) |
 | Gyral skill | MIT, © 2026 Mike Zupper; [license](.agents/skills/gyral/LICENSE), [notice](.agents/skills/gyral/NOTICE) |

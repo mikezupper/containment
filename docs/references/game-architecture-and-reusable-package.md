@@ -102,9 +102,9 @@ The workspace [packages/game-runtime](../../packages/game-runtime/README.md) use
 | `observeSelection` | HUD selection through the bridge | Match-stage observation in the packed consumer | Suitable after a coherent snapshot source exists |
 | `createSessionBridge` | Production controls watch/action drivers | Packed consumer starts an actual local match | Existing table driver also coordinates several cells; retain that orchestration |
 
-The `core` entry point has no runtime dependencies. The `gyral` entry point requires the exact optional peer `@gyral/core@0.3.7`, matching Containment's npm pin. The packed check first loads the core with no Gyral installed, then installs the peer for the bridge proof. This validates package files, declarations, peer separation, real dispatch, and driver isolation. It does not validate Greed's dice worker or multiplayer, and it is not production adoption in Greed.
+The `core` entry point has no runtime dependencies. The `gyral` entry point requires the exact optional peer `@gyral/core@0.3.8`, matching Containment's npm pin. The packed check first loads the core with no Gyral installed, then installs the peer for the bridge proof. This validates package files, declarations, peer separation, real dispatch, and driver isolation. It does not validate Greed's dice worker or multiplayer, and it is not production adoption in Greed.
 
-`createSessionBridge({ name, select, equal? })` supplies namespaced watch/action drivers, Gyral command factories, and `provide(element, session)`. Components own watch subscriptions; the browser host owns the provider binding and session shutdown. Containment keeps its 120 Hz clock, input, storage, audio, and WebGL recovery outside this package.
+`createSessionBridge({ name, select, equal? })` supplies namespaced watch/action driver tokens, Gyral command factories, and `provide(element, session)`, which provides both tokens' implementations for one session as a driver list. Components own watch subscriptions; the browser host owns the provider binding and session shutdown. Containment keeps its 120 Hz clock, input, storage, audio, and WebGL recovery outside this package.
 
 ## Possible later package shape
 

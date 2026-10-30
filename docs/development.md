@@ -79,3 +79,8 @@ the same exact npm release, then update the lockfile and tests together. Gyral r
 are published with npm provenance. The `vendor/gyral/0.3.1-next.1` archives record the
 earlier prerelease: do not replace an artifact in place while retaining an old checksum.
 Their `SOURCE.json` describes that packaging run.
+
+Run the release's codemod first when it has one (`npx @gyral/codemod@<version> <version> --dry`).
+Update the Gyral skill to the same release with `npx @gyral/mcp@<version> skill --dir
+.agents/skills/gyral`. It removes files the skill doesn't ship, so restore `LICENSE` and
+`NOTICE`, then record the version and `SKILL.md` hash in `.agents/SOURCES.md`.
